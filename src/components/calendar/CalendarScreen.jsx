@@ -5,6 +5,7 @@ import moment from "moment";
 import "moment/locale/es-mx";
 
 import { CalendarEvent } from "./CalendarEvent";
+import { CalendarModal } from "./CalendarModal";
 import { Navbar } from "../ui/Navbar";
 import { messages } from "../../helpers/calendar-messages-es";
 
@@ -75,6 +76,8 @@ export const CalendarScreen = () => {
           event: CalendarEvent,
         }}
       />
+
+      <CalendarModal />
     </div>
   );
 };
