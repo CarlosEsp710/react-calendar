@@ -3,8 +3,6 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { deleteEventAction } from "../../actions/calendar";
 
-import { openModalAction } from "../../actions/ui";
-
 import "../../assets/styles/fabs.css";
 
 export const DeleteEventFab = () => {
