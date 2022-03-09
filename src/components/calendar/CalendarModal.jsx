@@ -8,9 +8,9 @@ import Swal from "sweetalert2";
 
 import { closeModalAction } from "../../actions/ui";
 import {
-  addEventAction,
+  startAddEventAction,
   clearActiveEventAction,
-  updateEventAction,
+  startUpdateEventAction,
 } from "../../actions/calendar";
 
 import "../../assets/styles/date_picker.css";
@@ -114,21 +114,10 @@ export const CalendarModal = () => {
       });
     }
 
-    //TODO: Save in DB
-
     if (activeEvent) {
-      dispatch(updateEventAction(formValues));
+      dispatch(startUpdateEventAction(formValues));
     } else {
-      dispatch(
-        addEventAction({
-          ...formValues,
-          id: new Date().getTime(),
-          user: {
-            _id: "123",
-            name: "Carlos",
-          },
-        })
-      );
+      dispatch(startAddEventAction(formValues));
     }
 
     setInputValid({

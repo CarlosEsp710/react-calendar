@@ -14,6 +14,24 @@ export const fetchWithoutToken = (endpoint, method = "GET", data) => {
         },
         body: JSON.stringify(data),
       });
+    case "PUT":
+      return fetch(url, {
+        method,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+    case "DELETE":
+      return fetch(url, {
+        method,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
     default:
       return fetch(url);
   }
@@ -40,6 +58,25 @@ export const fetchWithToken = (endpoint, method = "GET", data) => {
         },
         body: JSON.stringify(data),
       });
+    case "PUT":
+      return fetch(url, {
+        method,
+        headers: {
+          "x-token": token,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+    case "DELETE":
+      return fetch(url, {
+        method,
+        headers: {
+          "x-token": token,
+          "Content-Type": "application/json",
+        },
+      });
+
     default:
       return fetch(url);
   }

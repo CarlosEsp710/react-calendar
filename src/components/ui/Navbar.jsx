@@ -3,12 +3,16 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { startLogoutAction } from "../../actions/auth";
+import { clearCalendarAction } from "../../actions/calendar";
 
 export const Navbar = () => {
   const dispatch = useDispatch();
   const { name } = useSelector((state) => state.auth);
 
-  const handleLogout = () => dispatch(startLogoutAction());
+  const handleLogout = () => {
+    dispatch(startLogoutAction());
+    dispatch(clearCalendarAction());
+  };
 
   return (
     <div className="navbar navbar-dark bg-dark mb-4">

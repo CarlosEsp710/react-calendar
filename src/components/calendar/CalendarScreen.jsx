@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,6 +11,7 @@ import { Navbar } from "../ui/Navbar";
 import {
   clearActiveEventAction,
   setActiveEventAction,
+  startLoadingEventsAction,
 } from "../../actions/calendar";
 import { messages } from "../../helpers/calendar-messages-es";
 import { openModalAction } from "../../actions/ui";
@@ -24,11 +25,16 @@ const localizer = momentLocalizer(moment);
 
 export const CalendarScreen = () => {
   const dispatch = useDispatch();
+  const { uid } = useSelector((state) => state.auth);
   const { events, activeEvent } = useSelector((state) => state.calendar);
 
   const [lastView, setLastView] = useState(
     localStorage.getItem("lastView") || "month"
   );
+
+  useEffect(() => {
+    dispatch(startLoadingEventsAction());
+  }, [dispatch]);
 
   const onDoubleClick = () => dispatch(openModalAction());
 
@@ -43,7 +49,7 @@ export const CalendarScreen = () => {
 
   const eventStyleGetter = (event, start, end, isSelected) => {
     const style = {
-      backgroundColor: "#367CF7",
+      backgroundColor: uid === event.user._id ? "#367CF7" : "#465660",
       color: "white",
       borderRadius: "0px",
       opacity: 0.8,
